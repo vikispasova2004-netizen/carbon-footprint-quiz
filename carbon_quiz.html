@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Куиз: Колко е твоят въглероден отпечатък?</title>
+<style>
+  body {
+    background-color: #0b0b0f;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    padding: 40px;
+  }
+  h1 {
+    color: #b38cff;
+    font-size: 32px;
+  }
+  .question {
+    margin: 30px auto;
+    background: rgba(255,255,255,0.05);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(179,140,255,0.2);
+    max-width: 600px;
+  }
+  button {
+    background: linear-gradient(90deg, #7e57c2, #ba68c8);
+    border: none;
+    color: white;
+    padding: 12px 25px;
+    margin: 8px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  button:hover {
+    background: linear-gradient(90deg, #9c27b0, #8e24aa);
+    transform: scale(1.05);
+  }
+  #result {
+    display: none;
+    margin-top: 30px;
+    font-size: 20px;
+    color: #fff;
+  }
+</style>
+</head>
+<body>
+  <h1>🌍 Колко е твоят въглероден отпечатък?</h1>
+  <p>Отговори на няколко въпроса и виж как ежедневните ти навици влияят на климата.</p>
+  
+  <div id="quiz">
+    <div class="question">
+      <h3>1️⃣ Как се придвижваш най-често?</h3>
+      <button onclick="addScore(3)">🚶 Пешa/колело</button>
+      <button onclick="addScore(2)">🚌 Обществен транспорт</button>
+      <button onclick="addScore(1)">🚗 Лична кола</button>
+      <button onclick="addScore(0)">🚙 SUV или дизел</button>
+    </div>
+    <div class="question" style="display:none;">
+      <h3>2️⃣ Как отопляваш дома си?</h3>
+      <button onclick="addScore(3)">☀️ Соларна енергия</button>
+      <button onclick="addScore(2)">💨 Централно отопление</button>
+      <button onclick="addScore(1)">🔥 Газ/дърва</button>
+      <button onclick="addScore(0)">🪵 Въглища</button>
+    </div>
+    <div class="question" style="display:none;">
+      <h3>3️⃣ Как пазаруваш?</h3>
+      <button onclick="addScore(3)">🛍️ Купувам само нужното</button>
+      <button onclick="addScore(2)">♻️ Предпочитам местни продукти</button>
+      <button onclick="addScore(1)">📦 Онлайн/вносни стоки</button>
+      <button onclick="addScore(0)">💸 Купувам излишни неща</button>
+    </div>
+    <div class="question" style="display:none;">
+      <h3>4️⃣ Как се справяш с отпадъците?</h3>
+      <button onclick="addScore(3)">♻️ Рециклирам активно</button>
+      <button onclick="addScore(2)">🚮 Рециклирам понякога</button>
+      <button onclick="addScore(0)">🗑️ Не рециклирам</button>
+    </div>
+    <div class="question" style="display:none;">
+      <h3>5️⃣ Имаш ли навици за енергийна ефективност?</h3>
+      <button onclick="addScore(3)">💡 Изключвам уредите, пестя енергия</button>
+      <button onclick="addScore(2)">🕯️ Понякога</button>
+      <button onclick="addScore(0)">⚡ Не обръщам внимание</button>
+    </div>
+  </div>
+
+  <div id="result">
+    <h2>🎯 Твоят резултат:</h2>
+    <p id="scoreText"></p>
+  </div>
+
+<script>
+  let score = 0;
+  let current = 0;
+  const questions = document.querySelectorAll('.question');
+
+  function addScore(value) {
+    score += value;
+    questions[current].style.display = 'none';
+    current++;
+    if (current < questions.length) {
+      questions[current].style.display = 'block';
+    } else {
+      showResult();
+    }
+  }
+
+  function showResult() {
+    document.getElementById('quiz').style.display = 'none';
+    const result = document.getElementById('result');
+    result.style.display = 'block';
+    let text = "";
+    if (score >= 13) text = "🌱 Еко-герой – живееш устойчиво и вдъхновяваш околните.";
+    else if (score >= 8) text = "⚖️ Добър баланс – имаш екосъзнание, но има още стъпки за подобрение.";
+    else text = "🔥 Време за промяна – всяко действие има значение, започни днес.";
+    document.getElementById('scoreText').innerText = text;
+  }
+</script>
+</body>
+</html>
