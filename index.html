@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="bg">
 <head>
@@ -87,17 +86,14 @@
       <button onclick="addScore(0)">⚡ Не обръщам внимание</button>
     </div>
   </div>
-
   <div id="result">
     <h2>🎯 Твоят резултат:</h2>
     <p id="scoreText"></p>
   </div>
-
 <script>
   let score = 0;
   let current = 0;
   const questions = document.querySelectorAll('.question');
-
   function addScore(value) {
     score += value;
     questions[current].style.display = 'none';
@@ -108,7 +104,6 @@
       showResult();
     }
   }
-
   function showResult() {
     document.getElementById('quiz').style.display = 'none';
     const result = document.getElementById('result');
