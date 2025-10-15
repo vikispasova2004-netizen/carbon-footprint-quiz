@@ -11,10 +11,33 @@
     font-family: 'Segoe UI', sans-serif;
     text-align: center;
     padding: 40px;
+    position: relative;
   }
+
+  /* 🔙 Бутон "Назад" */
+  #backBtn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: linear-gradient(90deg, #7e57c2, #ba68c8);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 0 8px rgba(179,140,255,0.4);
+  }
+  #backBtn:hover {
+    background: linear-gradient(90deg, #9c27b0, #8e24aa);
+    transform: scale(1.05);
+  }
+
   h1 {
     color: #b38cff;
     font-size: 32px;
+    margin-top: 60px;
   }
   .question {
     margin: 30px auto;
@@ -48,6 +71,10 @@
 </style>
 </head>
 <body>
+
+  <!-- 🔙 Бутон "Назад" -->
+  <button id="backBtn" onclick="goBack()">⬅️ Назад</button>
+
   <h1>🌍 Колко е твоят въглероден отпечатък?</h1>
   <p>Отговори на няколко въпроса и виж как ежедневните ти навици влияят на климата.</p>
   
@@ -86,14 +113,17 @@
       <button onclick="addScore(0)">⚡ Не обръщам внимание</button>
     </div>
   </div>
+
   <div id="result">
     <h2>🎯 Твоят резултат:</h2>
     <p id="scoreText"></p>
   </div>
+
 <script>
   let score = 0;
   let current = 0;
   const questions = document.querySelectorAll('.question');
+
   function addScore(value) {
     score += value;
     questions[current].style.display = 'none';
@@ -104,6 +134,7 @@
       showResult();
     }
   }
+
   function showResult() {
     document.getElementById('quiz').style.display = 'none';
     const result = document.getElementById('result');
@@ -113,6 +144,12 @@
     else if (score >= 8) text = "⚖️ Добър баланс – имаш екосъзнание, но има още стъпки за подобрение.";
     else text = "🔥 Време за промяна – всяко действие има значение, започни днес.";
     document.getElementById('scoreText').innerText = text;
+  }
+
+  // 🔙 Функция за връщане назад
+  function goBack() {
+    // Ако искаш да върне към StoryMap линк – сложи тук своя линк
+    window.location.href = "https://storymaps.arcgis.com/stories/25d1f1a311e0448897f042e3baba000b";
   }
 </script>
 </body>
